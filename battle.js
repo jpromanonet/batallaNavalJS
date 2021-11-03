@@ -1,10 +1,13 @@
 const board = document.querySelector("#board");
 const boardAttack = document.querySelector("#boardAttack");
 const position = document.querySelectorAll(".position");
+
 let matrix = [];
 let matrixAttack = [];
+
 const sizeShip = [5, 4, 3, 2];
 const positionArray = ["horizontal", "vertical"]
+
 let quantityShip = [1, 1, 1, 2];
 let quantityShipPC =  [1, 1, 1, 2];
 let ship = {};
@@ -36,6 +39,7 @@ function selectShip(event){
     ship.quantity = quantityShip[shipData[1]];
     ship.id = shipData[1];
 }
+
 //Creación de tablero jugador
 createMatrix(board, matrix, selectPosition, "player");
 //Creación de barcos
@@ -49,6 +53,7 @@ for(let i=0; i<position.length; i++){
     vertical.className = "vertical " + i;
     vertical.addEventListener("click", selectShip)
 }
+
 //Función para seleccionar posición de los barcos
 function selectPosition(event){
     if(ship.quantity > 0){
@@ -87,6 +92,7 @@ function selectPosition(event){
         alert("Debes seleccionar un barco disponible");
     }
 }
+
 //Función de botón iniciar juego
 function startGame(){
     createMatrix(boardAttack, matrixAttack, checkShot, "pc");
@@ -102,6 +108,7 @@ function selectPositionRandom(){
         }
     }
 }
+
 //Verificación de posición válida
 function checkPosition(pos, axis, size){
     if(shipRandom.position  === pos){
@@ -113,6 +120,7 @@ function checkPosition(pos, axis, size){
         }
     }
 }
+
 //Función para crear barco random
 function random(i){
     shipRandom.position = positionArray[Math.floor(Math.random() * Math.floor(positionArray.length))];
@@ -142,6 +150,7 @@ function random(i){
         return random(i)
     }
 }
+
 //Verificar tiro de jugador
 function checkShot(event){
     let grid = event.target
@@ -161,6 +170,7 @@ function checkShot(event){
         shotPc()
     }
 }
+
 //Jugada del PC
 function shotPc(){
     let x = Math.floor(Math.random() * Math.floor(10));
@@ -181,6 +191,7 @@ function shotPc(){
         document.getElementById(x + "," + y + "," + "player").className += " miss";
     }
 }
+
 //Revisar ganador
 function checkWinner(matrix, player){
     for(let i=0; i<10; i++){
